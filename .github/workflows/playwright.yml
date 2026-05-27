@@ -16,6 +16,7 @@ jobs:
       with:
         repository: cristianhalita/qa-portfolio-website-development
         path: app
+        token: ${{ secrets.APP_REPO_TOKEN }}
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
