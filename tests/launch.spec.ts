@@ -1,20 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/test';
 
-test('Check homepage is loaded correctly', async ({ page }) => {
-  await test.step('Navigate to the application', async () => {
-    await page.goto('http://localhost:5173');
+test.describe('TS-1: Homepage launch', () => {
+  test('TC-1: Verify the URL is correct', async ({ homePage }) => {
+    await expect(homePage.page).toHaveURL('/');
   });
 
-  await test.step('Verify the URL is correct', async () => {
-    await expect(page).toHaveURL('http://localhost:5173');
+  test('TC-2: Verify the page has the correct title', async ({ homePage }) => {
+    await expect(homePage.page).toHaveTitle('Cristian Halita | QA Engineer Portfolio');
   });
 
-  await test.step('Verify the page has the correct title', async () => {
-    await expect(page).toHaveTitle('Cristian Halita | QA Engineer Portfolio');
-  });
-
-  await test.step('Verify the page has loaded content', async () => {
-    const body = page.locator('body');
+  test('TC-3: Verify the page has loaded content', async ({ homePage }) => {
+    const body = homePage.page.locator('body');
     await expect(body).toBeVisible();
   });
 });
