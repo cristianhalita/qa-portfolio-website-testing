@@ -63,9 +63,10 @@ export class HomePage {
   }
 
   async verifyStat(value: string, label: string) {
-    const stat = this.page.getByText(value).first();
-    await expect(stat).toBeVisible();
-    const statLabel = this.page.getByText(label);
+    const statsGrid = this.page.locator('.grid-cols-3');
+    const statValue = statsGrid.locator('div.text-center').filter({ hasText: value });
+    await expect(statValue).toBeVisible();
+    const statLabel = statsGrid.locator('div.text-center').filter({ hasText: label });
     await expect(statLabel).toBeVisible();
   }
 }

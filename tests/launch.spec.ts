@@ -2,7 +2,7 @@ import { test, expect } from '../fixtures/test';
 
 test.describe('TS-1: Homepage launch', () => {
   test('TC-1: Verify the URL is correct', async ({ homePage }) => {
-    await expect(homePage.page).toHaveURL('/');
+    await expect(homePage.page).toHaveURL(/\/$/);
   });
 
   test('TC-2: Verify the page has the correct title', async ({ homePage }) => {
