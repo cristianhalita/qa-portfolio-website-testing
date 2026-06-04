@@ -8,6 +8,12 @@ const roles = [
 ];
 
 test.describe('TS-2: Homepage hero section', () => {
+  test.beforeEach(async ({ homePage }) => {
+    await test.step('Navigate to homepage', async () => {
+      await homePage.goto();
+    });
+  });
+
   test('TC-1: Verify the welcome message is visible', async ({ homePage }) => {
     await test.step('Verify heading is visible', async () => {
       await homePage.verifyWelcomeMessage();

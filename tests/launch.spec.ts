@@ -1,6 +1,12 @@
 import { test, expect } from '../fixtures/test';
 
 test.describe('TS-1: Homepage launch', () => {
+  test.beforeEach(async ({ homePage }) => {
+    await test.step('Navigate to homepage', async () => {
+      await homePage.goto();
+    });
+  });
+
   test('TC-1: Verify the URL is correct', async ({ homePage }) => {
     await test.step('Verify page URL ends with /', async () => {
       await expect(homePage.page).toHaveURL(/\/$/);
