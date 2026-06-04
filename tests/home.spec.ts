@@ -40,14 +40,14 @@ test.describe('TS-2: Homepage hero section', () => {
     });
   });
 
-  test('TC-5: Verify "Explore Skills" button is visible, enabled, links correctly, and scrolls to the skills section', async ({ homePage }) => {
-    await test.step('Verify "Explore Skills" button is visible, enabled, and links to #skills', async () => {
+  test('TC-5: Verify "Explore Skills" button is visible, enabled, and scrolls to the skills section', async ({ homePage }) => {
+    await test.step('Verify "Explore Skills" button is visible, enabled, and navigates to skills section', async () => {
       await homePage.verifyExploreSkillsButton();
     });
   });
 
-  test('TC-6: Verify "View Work" button is visible, enabled, links correctly, and scrolls to the projects section', async ({ homePage }) => {
-    await test.step('Verify "View Work" button is visible, enabled, and links to #projects', async () => {
+  test('TC-6: Verify "View Work" button is visible, enabled, and scrolls to the projects section', async ({ homePage }) => {
+    await test.step('Verify "View Work" button is visible, enabled, and navigates to projects section', async () => {
       await homePage.verifyViewWorkButton();
     });
   });

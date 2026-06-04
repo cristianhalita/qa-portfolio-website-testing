@@ -19,10 +19,10 @@ test.describe('TS-1: Homepage launch', () => {
     });
   });
 
-  test('TC-3: Verify the page has loaded content', async ({ homePage }) => {
-    await test.step('Verify body element is visible', async () => {
-      const body = homePage.page.locator('body');
-      await expect(body).toBeVisible();
+  test('TC-3: Verify the page has loaded content', async ({ homePage, testIds }) => {
+    await test.step('Verify app root element is visible', async () => {
+      const appRoot = homePage.page.getByTestId(testIds.app.root);
+      await expect(appRoot).toBeVisible();
     });
   });
 });

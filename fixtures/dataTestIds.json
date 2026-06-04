@@ -1,0 +1,110 @@
+{
+	"app": {
+		"root": "app-root"
+	},
+	"navbar": {
+		"desktop": "navbar-desktop",
+		"logo": "navbar-logo",
+		"desktopLinks": "navbar-desktop-links",
+		"navLink": "nav-link-{section}",
+		"testRunnerButtonDesktop": "test-runner-button-desktop",
+		"mobile": "navbar-mobile",
+		"mobileLogo": "navbar-mobile-logo",
+		"mobileMenuButton": "mobile-menu-button",
+		"testRunnerButtonMobile": "test-runner-button-mobile",
+		"mobileMenuOverlay": "mobile-menu-overlay",
+		"mobileLinks": "navbar-mobile-links",
+		"mobileNavLink": "mobile-nav-link-{section}"
+	},
+	"hero": {
+		"section": "hero-section",
+		"availabilityBadge": "hero-availability-badge",
+		"contextMenu": "hero-context-menu",
+		"statusOptionAvailable": "status-option-available",
+		"statusOptionSelective": "status-option-selective",
+		"statusOptionUnavailable": "status-option-unavailable",
+		"loginModal": "hero-login-modal",
+		"loginUsernameInput": "login-username-input",
+		"loginPasswordInput": "login-password-input",
+		"loginCancelButton": "login-cancel-button",
+		"loginSubmitButton": "login-submit-button",
+		"name": "hero-name",
+		"typewriterRole": "hero-typewriter-role",
+		"description": "hero-description",
+		"ctaButtons": "hero-cta-buttons",
+		"exploreSkillsButton": "hero-explore-skills-button",
+		"viewWorkButton": "hero-view-work-button",
+		"stats": "hero-stats"
+	},
+	"about": {
+		"section": "about-section",
+		"avatar": "about-avatar",
+		"name": "about-name",
+		"tags": "about-tags",
+		"certificationBadge": "about-certification-badge",
+		"subtitle": "about-subtitle",
+		"heading": "about-heading",
+		"description": "about-description",
+		"quickFacts": "about-quick-facts"
+	},
+	"skills": {
+		"section": "skills-section",
+		"subtitle": "skills-subtitle",
+		"heading": "skills-heading",
+		"qaPracticesHeading": "skills-qa-practices-heading",
+		"qaCategoriesGrid": "skills-qa-categories-grid",
+		"toolsHeading": "skills-tools-heading",
+		"toolsGrid": "skills-tools-grid"
+	},
+	"projects": {
+		"section": "projects-section",
+		"subtitle": "projects-subtitle",
+		"heading": "projects-heading",
+		"mobileSlider": "projects-mobile-slider",
+		"prevButton": "projects-prev-button",
+		"nextButton": "projects-next-button",
+		"desktopGrid": "projects-desktop-grid"
+	},
+	"careerPath": {
+		"section": "career-path-section",
+		"subtitle": "career-path-subtitle",
+		"heading": "career-path-heading",
+		"timeline": "career-path-timeline",
+		"certificationsHeading": "career-path-certifications-heading",
+		"methodologiesHeading": "career-path-methodologies-heading",
+		"educationHeading": "career-path-education-heading"
+	},
+	"testimonials": {
+		"section": "testimonials-section",
+		"subtitle": "testimonials-subtitle",
+		"heading": "testimonials-heading",
+		"grid": "testimonials-grid"
+	},
+	"contact": {
+		"section": "contact-section",
+		"subtitle": "contact-subtitle",
+		"heading": "contact-heading",
+		"info": "contact-info",
+		"form": "contact-form",
+		"nameInput": "contact-name-input",
+		"emailInput": "contact-email-input",
+		"subjectInput": "contact-subject-input",
+		"messageInput": "contact-message-input",
+		"submitButton": "contact-submit-button",
+		"sendAnotherButton": "contact-send-another-button"
+	},
+	"footer": {
+		"element": "footer",
+		"logo": "footer-logo",
+		"nav": "footer-nav",
+		"socialLinks": "footer-social-links",
+		"linkedinLink": "footer-linkedin-link",
+		"githubLink": "footer-github-link"
+	},
+	"testRunner": {
+		"panel": "test-runner-panel",
+		"title": "test-runner-title",
+		"runButton": "test-runner-run-button",
+		"viewReportLink": "test-runner-view-report-link"
+	}
+}

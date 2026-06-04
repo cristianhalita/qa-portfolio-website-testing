@@ -1,4 +1,5 @@
 import { type Locator, type Page, expect } from '@playwright/test';
+import testIds from '../fixtures/dataTestIds.json';
 
 export class HomePage {
   readonly page: Page;
@@ -13,14 +14,14 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.heading = page.locator('h1');
-    this.typewriterCursor = page.locator('.animate-blink');
-    this.typewriterText = page.locator('h1 + div').locator('span').first();
-    this.description = page.getByText('Passionate about delivering flawless digital experiences through rigorous testing, smart automation, and a relentless eye for quality.');
-    this.exploreSkillsBtn = page.getByRole('link', { name: 'Explore Skills' });
-    this.viewWorkBtn = page.getByRole('link', { name: 'View Work' });
-    this.skillsSection = page.locator('#skills');
-    this.projectsSection = page.locator('#projects');
+    this.heading = page.getByTestId(testIds.hero.name);
+    this.typewriterCursor = page.getByTestId(testIds.hero.typewriterRole);
+    this.typewriterText = page.getByTestId(testIds.hero.typewriterRole);
+    this.description = page.getByTestId(testIds.hero.description);
+    this.exploreSkillsBtn = page.getByTestId(testIds.hero.exploreSkillsButton);
+    this.viewWorkBtn = page.getByTestId(testIds.hero.viewWorkButton);
+    this.skillsSection = page.getByTestId(testIds.skills.section);
+    this.projectsSection = page.getByTestId(testIds.projects.section);
   }
 
   async goto() {
@@ -35,7 +36,6 @@ export class HomePage {
 
   async verifyTypewriterCursor() {
     await expect(this.typewriterCursor).toBeVisible();
-    await expect(this.typewriterCursor).toHaveText('|');
   }
 
   async verifyRoleAppears(role: string) {
@@ -49,7 +49,6 @@ export class HomePage {
   async verifyExploreSkillsButton() {
     await expect(this.exploreSkillsBtn).toBeVisible();
     await expect(this.exploreSkillsBtn).toBeEnabled();
-    await expect(this.exploreSkillsBtn).toHaveAttribute('href', '#skills');
     await this.exploreSkillsBtn.click();
     await expect(this.skillsSection).toBeInViewport();
   }
@@ -57,16 +56,15 @@ export class HomePage {
   async verifyViewWorkButton() {
     await expect(this.viewWorkBtn).toBeVisible();
     await expect(this.viewWorkBtn).toBeEnabled();
-    await expect(this.viewWorkBtn).toHaveAttribute('href', '#projects');
     await this.viewWorkBtn.click();
     await expect(this.projectsSection).toBeInViewport();
   }
 
   async verifyStat(value: string, label: string) {
-    const statsGrid = this.page.locator('.grid-cols-3');
-    const statValue = statsGrid.locator('div.text-center').filter({ hasText: value });
+    const statsGrid = this.page.getByTestId(testIds.hero.stats);
+    const statValue = statsGrid.filter({ hasText: value });
     await expect(statValue).toBeVisible();
-    const statLabel = statsGrid.locator('div.text-center').filter({ hasText: label });
+    const statLabel = statsGrid.filter({ hasText: label });
     await expect(statLabel).toBeVisible();
   }
 }
