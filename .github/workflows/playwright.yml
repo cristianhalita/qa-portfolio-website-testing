@@ -50,10 +50,6 @@ jobs:
     - name: Install Playwright Browsers
       working-directory: ./testing
       run: npx playwright install --with-deps
-    - name: Update test URL
-      working-directory: ./testing
-      run: |
-        sed -i 's|http://localhost:5173|http://localhost:4173|g' tests/launch.spec.ts
     - name: Run Playwright tests
       working-directory: ./testing
       run: npm test
