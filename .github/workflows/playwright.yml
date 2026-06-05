@@ -28,12 +28,14 @@ jobs:
       with:
         node-version: lts/*
     - name: Cache app node_modules
+      id: app-cache
       uses: actions/cache@v4
       with:
         path: app/node_modules
         key: app-node-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
         restore-keys: app-node-${{ runner.os }}-
     - name: Install app dependencies
+      if: steps.app-cache.outputs.cache-hit != 'true'
       working-directory: ./app
       run: npm ci
     - name: Build app
@@ -55,12 +57,14 @@ jobs:
         echo "App failed to start"
         exit 1
     - name: Cache test node_modules
+      id: test-cache
       uses: actions/cache@v4
       with:
         path: testing/node_modules
         key: test-node-${{ runner.os }}-${{ hashFiles('testing/package-lock.json') }}
         restore-keys: test-node-${{ runner.os }}-
     - name: Install test dependencies
+      if: steps.test-cache.outputs.cache-hit != 'true'
       working-directory: ./testing
       run: npm ci
     - name: Cache Playwright browsers
