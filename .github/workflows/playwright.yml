@@ -57,7 +57,7 @@ jobs:
         restore-keys: playwright-${{ runner.os }}-
     - name: Install Playwright Browsers
       working-directory: ./testing
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps chromium
     - name: Run Playwright tests
       working-directory: ./testing
       env:
