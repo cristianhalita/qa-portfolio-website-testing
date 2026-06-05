@@ -1,4 +1,5 @@
 import { test, expect } from '../fixtures/test';
+import testIds from '../data/dataTestIds.json';
 
 test.describe('TS-1: Homepage launch', () => {
   test.beforeEach(async ({ homePage }) => {
@@ -19,7 +20,7 @@ test.describe('TS-1: Homepage launch', () => {
     });
   });
 
-  test('TC-3: Verify the page has loaded content', async ({ homePage, testIds }) => {
+  test('TC-3: Verify the page has loaded content', async ({ homePage }) => {
     await test.step('Verify app root element is visible', async () => {
       const appRoot = homePage.page.getByTestId(testIds.app.root);
       await expect(appRoot).toBeVisible();

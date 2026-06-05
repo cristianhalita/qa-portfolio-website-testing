@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -39,19 +39,29 @@ jobs:
         for i in {1..30}; do
           if curl -s http://localhost:4173 > /dev/null; then
             echo "App is ready"
-            break
+            exit 0
           fi
           echo "Waiting for app to be ready... ($i/30)"
           sleep 2
         done
+        echo "App failed to start"
+        exit 1
     - name: Install test dependencies
       working-directory: ./testing
       run: npm ci
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('testing/package-lock.json') }}
+        restore-keys: playwright-${{ runner.os }}-
     - name: Install Playwright Browsers
       working-directory: ./testing
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       working-directory: ./testing
+      env:
+        CI: true
       run: npm test
     - uses: actions/upload-artifact@v4
       if: always()
@@ -61,7 +71,7 @@ jobs:
         retention-days: 30
 
   deploy:
-    if: always()
+    if: ${{ needs.test.result == 'success' }}
     needs: test
     runs-on: ubuntu-latest
     permissions:

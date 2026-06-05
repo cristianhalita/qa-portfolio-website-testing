@@ -1,11 +1,10 @@
 import { type Locator, type Page, expect } from '@playwright/test';
-import testIds from '../fixtures/dataTestIds.json';
+import testIds from '../data/dataTestIds.json';
 
 export class HomePage {
   readonly page: Page;
   readonly heading: Locator;
-  readonly typewriterCursor: Locator;
-  readonly typewriterText: Locator;
+  readonly typewriterRole: Locator;
   readonly description: Locator;
   readonly exploreSkillsBtn: Locator;
   readonly viewWorkBtn: Locator;
@@ -15,8 +14,7 @@ export class HomePage {
   constructor(page: Page) {
     this.page = page;
     this.heading = page.getByTestId(testIds.hero.name);
-    this.typewriterCursor = page.getByTestId(testIds.hero.typewriterRole);
-    this.typewriterText = page.getByTestId(testIds.hero.typewriterRole);
+    this.typewriterRole = page.getByTestId(testIds.hero.typewriterRole);
     this.description = page.getByTestId(testIds.hero.description);
     this.exploreSkillsBtn = page.getByTestId(testIds.hero.exploreSkillsButton);
     this.viewWorkBtn = page.getByTestId(testIds.hero.viewWorkButton);
@@ -28,43 +26,69 @@ export class HomePage {
     await this.page.goto('/');
   }
 
-  async verifyWelcomeMessage() {
+  // Assert methods
+  async assertHeadingIsVisible() {
     await expect(this.heading).toBeVisible();
-    await expect(this.heading).toContainText("Hi, I'm");
-    await expect(this.heading).toContainText('Cristian Halita');
   }
 
-  async verifyTypewriterCursor() {
-    await expect(this.typewriterCursor).toBeVisible();
+  async assertHeadingContainsText(text: string) {
+    await expect(this.heading).toContainText(text);
   }
 
-  async verifyRoleAppears(role: string) {
-    await expect(this.typewriterText).toContainText(role, { timeout: 15000 });
+  async assertTypewriterRoleIsVisible() {
+    await expect(this.typewriterRole).toBeVisible();
   }
 
-  async verifyDescription() {
+  async assertTypewriterRoleContainsText(role: string) {
+    await expect(this.typewriterRole).toContainText(role);
+  }
+
+  async assertDescriptionIsVisible() {
     await expect(this.description).toBeVisible();
   }
 
-  async verifyExploreSkillsButton() {
+  async assertExploreSkillsBtnIsVisible() {
     await expect(this.exploreSkillsBtn).toBeVisible();
+  }
+
+  async assertExploreSkillsBtnIsEnabled() {
     await expect(this.exploreSkillsBtn).toBeEnabled();
-    await this.exploreSkillsBtn.click();
+  }
+
+  async assertSkillsSectionIsInViewport() {
     await expect(this.skillsSection).toBeInViewport();
   }
 
-  async verifyViewWorkButton() {
+  async assertViewWorkBtnIsVisible() {
     await expect(this.viewWorkBtn).toBeVisible();
+  }
+
+  async assertViewWorkBtnIsEnabled() {
     await expect(this.viewWorkBtn).toBeEnabled();
-    await this.viewWorkBtn.click();
+  }
+
+  async assertProjectsSectionIsInViewport() {
     await expect(this.projectsSection).toBeInViewport();
   }
 
-  async verifyStat(value: string, label: string) {
+  async assertStatValueIsVisible(value: string) {
     const statsGrid = this.page.getByTestId(testIds.hero.stats);
     const statValue = statsGrid.filter({ hasText: value });
     await expect(statValue).toBeVisible();
+  }
+
+  async assertStatLabelIsVisible(label: string) {
+    const statsGrid = this.page.getByTestId(testIds.hero.stats);
     const statLabel = statsGrid.filter({ hasText: label });
     await expect(statLabel).toBeVisible();
+  }
+
+  // Action methods
+  async clickOnExploreSkillsBtn() {
+    await this.exploreSkillsBtn.click();
+  }
+
+  async clickOnViewWorkBtn() {
+    await this.viewWorkBtn.click();
   }
 }
